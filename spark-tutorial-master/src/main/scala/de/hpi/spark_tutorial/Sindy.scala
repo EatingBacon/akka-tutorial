@@ -20,6 +20,7 @@ object Sindy {
       })
       ds = ds.union(value_column_name_tuples)
     }
+    // ds.show()
 
     val x = ds.rdd
       // pre aggregation by key, each key now has all its occurrence column names
@@ -32,6 +33,8 @@ object Sindy {
       // Here could be an partition again (see above)
       // Aggregate by intersection
       .reduceByKey((v1: ArrayBuffer[String], v2 : ArrayBuffer[String]) => v1.intersect(v2))
+      // Filter out empty matches
+      .filter(tuple => tuple._2.size > 0)
       // Create output string
       .map(tuple => {
         val delim = ", "

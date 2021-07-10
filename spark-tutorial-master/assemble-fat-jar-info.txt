@@ -1,0 +1,6 @@
+Hi there :)
+
+As git limits the file size, we split the fat jar into multiple files with `split -b50M SparkTutorialSBT-assembly-0.1.jar SparkTutorialSBT-assembly-0.1.jar.`.
+If you want to reassemble the fat jar, use `cat SparkTutorialSBT-assembly-0.1.jar.* > SparkTutorialSBT-assembly-0.1.jar`
+
+If this doesn't work, please compile everything locally again with `sbt assembly` in the root directory of the spark project.
